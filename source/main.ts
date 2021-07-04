@@ -17,4 +17,4 @@ class Renderer {
 }
 
 
-const MY_RENDERER = new Renderer();
+const MY_RENDERER: Renderer = new Renderer();
