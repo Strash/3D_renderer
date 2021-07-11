@@ -10,8 +10,6 @@ class Camera {
     get FOV() {
         return 2 * Math.atan(hypotenuse(this._canvas.width, this._canvas.height) / (this.focalLength * 2));
     }
-    render() {
-    }
 }
 // viewport
 class Viewport {
