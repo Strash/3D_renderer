@@ -3,7 +3,6 @@ import { Vector2, Vector3, hypotenuse, toDegrees, convertCoordinates } from "./m
 class Camera {
     constructor(_canvas, position, focalLength) {
         this._canvas = _canvas;
-        this._canvas = _canvas;
         this.position = position;
         this.focalLength = focalLength;
     }
@@ -14,7 +13,6 @@ class Camera {
 // viewport
 class Viewport {
     constructor(_canvas) {
-        this._canvas = _canvas;
         this._canvas = _canvas;
     }
     get width() {

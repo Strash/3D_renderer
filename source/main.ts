@@ -7,7 +7,6 @@ class Camera {
 	focalLength: number;
 
 	constructor(private _canvas: HTMLCanvasElement, position: Vector3, focalLength: number) {
-		this._canvas = _canvas;
 		this.position = position;
 		this.focalLength = focalLength;
 	}
@@ -20,7 +19,6 @@ class Camera {
 // viewport
 class Viewport {
 	constructor(private _canvas: HTMLCanvasElement) {
-		this._canvas = _canvas;
 	}
 
 	get width(): number {
