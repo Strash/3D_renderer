@@ -1,4 +1,4 @@
-import { Vector2, Vector3, hypotenuse, toDegrees } from "./math.js";
+import { Vector2, Vector3, hypotenuse, toDegrees, convertCoordinates } from "./math.js";
 // camera
 class Camera {
     constructor(_canvas, position, focalLength) {
@@ -9,6 +9,8 @@ class Camera {
     }
     get FOV() {
         return 2 * Math.atan(hypotenuse(this._canvas.width, this._canvas.height) / (this.focalLength * 2));
+    }
+    render() {
     }
 }
 // viewport
@@ -29,11 +31,8 @@ class Viewport {
     get rect() {
         return new Vector2(this.width, this.height);
     }
-    _getCoordinateOffset(position) {
-        return new Vector2(this._canvas.width / 2 + position.x, this._canvas.height / 2 - position.y);
-    }
     viewportCoordinates(canvasPixelPosition) {
-        let offsetedPixel = this._getCoordinateOffset(canvasPixelPosition);
+        let offsetedPixel = convertCoordinates(new Vector2(this._canvas.width, this._canvas.height), canvasPixelPosition);
         let v_x = offsetedPixel.x * (this.width / this._canvas.width);
         let v_y = offsetedPixel.y * (this.height / this._canvas.height);
         return new Vector2(v_x, v_y);
@@ -41,12 +40,13 @@ class Viewport {
 }
 // main class
 class Renderer {
-    constructor() {
-        this.canvas = document.getElementById("canvas");
+    constructor(canvas) {
+        this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.viewport = new Viewport(this.canvas);
         this.camera = new Camera(this.canvas, new Vector3(0, 0, 0), 70);
         console.log(toDegrees(this.camera.FOV));
     }
 }
-new Renderer();
+let canvas = document.getElementById("canvas");
+new Renderer(canvas);
